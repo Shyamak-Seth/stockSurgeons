@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Surgeons - Home</title>
     <style>
+        * {box-sizing: border-box;}
         body {
             margin: 0px;
             font-family: sans-serif;
@@ -108,6 +109,67 @@
         .randomImagesThingy img {
             width: 25vw;
         }
+        .ourTeam {
+            display: flex;
+            width: 1000px;
+            gap: 30px;
+            margin: auto;
+            margin-top: 15vh;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 30px;
+        }
+        .smallCard, .normalCard, .largeCard {
+            width: 220px; 
+            background-color: #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            position: relative;
+            flex-direction: column;
+            font-size: 20px;
+            text-align: center;
+            background-size: cover;
+        }
+        .column p {
+            margin: 5px 0;
+            font-size: 17px;
+            z-index: 1;
+        }
+        .column b {z-index: 1;}
+        .cardImg {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 85px;
+            top: -25px;
+            background-color: transparent;
+            padding: 8px;
+            background-color: #888;
+            border: 2px solid white;
+            border-radius: 50px;
+        }
+        .smallCard {
+            min-height: 120px;
+        }
+        .normalCard {
+            min-height: 200px;
+        }
+        .largeCard {
+            min-height: 280px;
+        }
+        .cardOverlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.65);
+            z-index: 0;
+        }
 
         @keyframes bounce {
             50% {transform: translateY(-20px)}
@@ -136,14 +198,84 @@
         <div class="scrollCircle">Scroll<br>&darr;</div>
     </div>
     <div class="randomPhotosSection">
-        <div class="randomImagesThingy">
+        <div class="randomImagesThingy" id="marqueeImgs" style="position: absolute; left: 0px;">
+            <img src="stockOne.jpg">
+            <img src="stockTwo.jpg">
+            <img src="stockThree.jpg">
+            <img src="stockFour.jpg">
+            <img src="stockOne.jpg">
+            <img src="stockTwo.jpg">
+            <img src="stockThree.jpg">
+            <img src="stockFour.jpg">
+        </div>
+        <div class="randomImagesThingy" style="visibility: hidden;">
+            <img src="stockOne.jpg">
+            <img src="stockTwo.jpg">
+            <img src="stockThree.jpg">
+            <img src="stockFour.jpg">
             <img src="stockOne.jpg">
             <img src="stockTwo.jpg">
             <img src="stockThree.jpg">
             <img src="stockFour.jpg">
         </div>
     </div>
+    <div class="ourTeam" id="ourTeam">
+        <div class="column">
+            <div class="smallCard" style="background-color: #ddd;">
+                Our Team
+                <img src="ourTeamLogo.svg" class="cardImg">
+            </div>
+            <div class="largeCard" style="background-image: url('/financeImage.jpg'); color: white;">
+                <div class=cardOverlay></div>
+                <b>Ishita Madaan</b>
+                <p>Financial Equity & Data Suture Surgeon</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="normalCard" style="background-image: url('/stocksImageOne.webp'); color: white;">
+                <div class="cardOverlay"></div>
+                <b>Ananya Goswami</b>
+                <p>Chief Surgeon of Investments</p>
+            </div>
+            <div class="normalCard" style="background-image: url('/humanBrain.jpg'); color: white;">
+                <b>Gauri Mishra</b>
+                <p>Scalpel Portfolio Manager</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="normalCard" style="background-image: url('stocksImageTwo.jpg'); color: white;">
+                <div class="cardOverlay"></div>
+                <b>Aarav Mahajan</b>
+                <p>Investment Strategist & Operation Planner</p>
+            </div>
+            <div class="normalCard" style="background-color: rgb(170, 2, 255); color: white;">
+                <b>Manaswi Panwar</b>
+                <p>Risk Management Surgeon</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="smallCard" style="background-color: rgb(250, 6, 68); color: white; min-height: 150px;">
+                <b>Aanya Ahuja</b>
+                <p>Quantitative Mastery Surgeon</p>
+            </div>
+            <div class="largeCard" style="min-height: 250px; background-color: rgb(104, 104, 104); color: white;">
+                <b>Praneel Pathak</b>
+                <p>Algorithmic Precision Specialist</p>
+            </div>
+        </div>
+    </div>
     <script>
+        const marquee = document.getElementById('marqueeImgs')
+        marqueeRect = marquee.getBoundingClientRect()
+        const myInterval = setInterval(() => {
+            marqueeStyleLeft = Number(marquee.style.left.slice(0, -2))
+            if (marqueeStyleLeft <= -(document.body.offsetWidth)) {
+                marquee.style.left = '0px'
+                marqueeStyleLeft = 0
+            }
+            console.log(document.body.offsetWidth)
+            marquee.style.left = (marqueeStyleLeft - 1) + 'px'
+        }, 5)
         window.onload = () => {
             document.getElementById('bgOverlay').style.height = document.getElementById('bgLoop').getBoundingClientRect().height + 'px'
         }
