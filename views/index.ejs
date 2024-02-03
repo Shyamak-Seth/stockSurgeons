@@ -206,7 +206,7 @@
     </style>
 </head>
 <body>
-    <div class="loadingScreen">
+    <div class="loadingScreen" id="loadingScreen">
         <h1>Loading... <span id=loadedPercentage>0</span>%</h1>
         <div class="loadingBarOut">
             <div class="loadingBarIn" id="loadingBar"></div>
@@ -315,8 +315,10 @@
             const loadingBar = document.getElementById('loadingBar')
             loadingBar.style.width = `${loadedPercent}%`
             document.getElementById('loadedPercentage').innerHTML = loadedPercent
-            if (loadedPercent == 99 && document.readyState == 'complete') {
+            if (document.readyState == 'complete') {
                 console.log('done')
+                document.getElementById('loadingScreen').style.display = 'none'
+                clearInterval(loadInterval)
             } else if (loadedPercent == 99) {
                 console.log('wait!')
             } else {
