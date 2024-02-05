@@ -198,6 +198,48 @@
             height: 16px;
             margin: 0px 5px;
         }
+        .thatSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            border-bottom: 2px solid white;
+            flex-direction: column;
+        }
+        .collapsableDivs {
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+            color: white;
+        }
+        .collapsable {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .collapsableHeading {
+            width: 100%;
+            border-radius: 50px;
+            background-color: rgb(250, 6, 68);
+            color: white;
+            font-weight: bolder;
+            font-size: 25px;
+            padding: 17px 40px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        .collapsableDesc {
+            width: 100%;
+            background-color: #222;
+            line-height: 1.6;
+            font-size: 18px;
+            text-align: center;
+            padding: 30px;
+            transform: scale(1, 0);
+            transform-origin: top;
+            display: none;
+            transition: transform 0.4s;
+        }
 
         @keyframes bounce {
             50% {transform: translateY(-20px)}
@@ -252,6 +294,26 @@
             <img src="stockThree.jpg">
             <img src="stockFour.jpg">
         </div>
+    </div>
+    <div class="thatSection">
+        <h1 style="color: lime; text-align: center;">Our Resources</h1>
+        <div class="collapsableDivs">
+            <div class="collapsable" onclick="toggleCollapsed(event)">
+                <div class="collapsableHeading">About Us</div>
+                <div class="collapsableDesc">At Stock Surgeons, we seamlessly blend medical precision with market mastery. As adept diagnosticians, we meticulously analyze market conditions. Our trades mirror surgical maneuvers, employing in-depth analysis and proprietary tools like the <b style="color: rgb(250, 6, 68)">'Fierce Factor Program'</b> and <b style="color: rgb(250, 6, 68)">Peer Performance Tool</b>. Constantly rehabilitating portfolios for optimal performance, we offer a unique fusion of medical expertise and financial acumen. Trust us for precision investing and surgical success – your wealth in expert hands at Stock Surgeons!</div>
+            </div>
+            <div class="collapsable" onclick="toggleCollapsed(event)">
+                <div class="collapsableHeading"  style="background-color: rgb(250, 83, 0);">Peer Performance Tool</div>
+                <div class="collapsableDesc">Allows for a side-by-side evaluation by analyzing the <b style="color: rgb(250, 83, 0)">rate of increase in Stock & ETF closing prices</b> over the last 12 months, to identify the top players in the market.</div>
+            </div>
+            <div class="collapsable" onclick="toggleCollapsed(event)">
+                <div class="collapsableHeading"  style="background-color: rgb(170, 2, 255);">Fierce Factor Programme</div>
+                <div class="collapsableDesc">Inspired from the irreplaceable loyalty and fierceness of a dog in protecting their owners from any sort of danger by using a <b style="color: rgb(170, 2, 255)">Trailing Stop Loss system</b>.</div>
+            </div>
+        </div>
+    </div>
+    <div class="thatSection">
+        <h1 style="color: red; box-shadow: 4px; text-align: center;">Finance Caretakers</h1>
     </div>
     <div class="ourTeam" id="ourTeam">
         <div class="column">
@@ -310,6 +372,7 @@
             }
             console.log(document.body.offsetWidth)
             marquee.style.left = (marqueeStyleLeft - 1) + 'px'
+            window.scrollTo(0, window.scrollY)
         }, 5)
         const loadInterval = setInterval(() => {
             const loadingBar = document.getElementById('loadingBar')
@@ -327,6 +390,29 @@
         }, 40)
         window.onload = () => {
             document.getElementById('bgOverlay').style.height = document.getElementById('bgLoop').getBoundingClientRect().height + 'px'
+        }
+        function toggleCollapsed(e) {
+            const toCollapse = e.target.parentElement.children[1]
+            if (e.target == toCollapse) return;
+            const stylesOfElmnt = window.getComputedStyle(toCollapse),
+                styleDisplay = stylesOfElmnt.getPropertyValue('display')
+            if (styleDisplay == 'none') {
+                console.log('hidden!')
+                toCollapse.style.display = 'block'
+                e.target.style.borderBottomRightRadius = '0px'
+                e.target.style.borderBottomLeftRadius = '0px'
+                console.log(e.target)
+                setTimeout(() => {
+                    toCollapse.style.transform = 'scale(1, 1)'
+                }, 50)
+            } else {
+                toCollapse.style.transform = 'scale(1, 0)'
+                e.target.style.borderBottomRightRadius = '50px'
+                e.target.style.borderBottomLeftRadius = '50px'
+                setTimeout(() => {
+                    toCollapse.style.display = 'none'
+                }, 400)
+            }
         }
     </script>
 </body>
