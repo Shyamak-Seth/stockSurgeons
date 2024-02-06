@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Stock Surgeons - Home</title>
     <style>
         * {box-sizing: border-box;}
         body {
             margin: 0px;
-            font-family: sans-serif;
+            font-family: 'Open Sans', sans-serif;
             overflow-x: hidden;
             background-color: black;
+        }
+        .socialIcons {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            top: 38%;
+            right: 5%;
+        }
+        .socialIcon {
+            font-size: 2.8em;
+            color: white;
         }
         ::-webkit-scrollbar {
             width: 10px;
@@ -239,6 +253,58 @@
             transform-origin: top;
             display: none;
             transition: transform 0.4s;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+        .thatSection p {
+            text-align: center;
+            color: white;
+            font-size: 22px;
+            line-height: 1.6;
+            width: 70vw;
+        }
+        .gameBox {
+            background-color: #111;
+            border-radius: 20px;
+            width: 500px;
+            padding: 50px;
+        }
+        .inputContainer {
+            width: 100%;
+            color: white;
+            position: relative;
+            margin-top: 25px;
+        }
+        .inputContainer input {
+            border: none;
+            border-bottom: 2px solid white;
+            background-color: transparent;
+            outline: none;
+            color: white;
+            font-size: 1em;
+            width: 100%;
+        }
+        .inputContainer select {
+            border: none;
+            border-bottom: 2px solid white;
+            background-color: transparent;
+            outline: none;
+            color: white;
+            font-size: 1em;
+            width: 100%;
+        }
+        .inputContainer label {
+            position: absolute;
+            cursor: text;
+            transition: 0.2s;
+        }
+        .inputContainer select option {
+            background-color: #444;
+            color: white;
+        }
+        
+        .inputContainer select option:checked {
+            background-color: #555;
         }
 
         @keyframes bounce {
@@ -271,6 +337,10 @@
         </div>
         <img class="logoImg" src="stockLogo.webp">
         <h1 class="headerHeading">Precision.<br>Expertise.<br>Growth.</h1>
+        <div class="socialIcons">
+            <a href="/"><div class="socialIcon"><i class="fa fa-instagram"></i></div></a>
+            <a href="/"><div class="socialIcon"><i class="fa fa-linkedin-square"></i></div></a>
+        </div>
         <div class="scrollCircle">Scroll<br>&darr;</div>
     </div>
     <div class="randomPhotosSection">
@@ -314,6 +384,38 @@
     </div>
     <div class="thatSection">
         <h1 style="color: red; box-shadow: 4px; text-align: center;">Finance Caretakers</h1>
+        <p>Welcome to Finance Caretakers, a unique and innovative game where players unleash their creativity to design imaginary characters while challenging the Stock Surgeons to craft tailored portfolio plans available on their Instagram page.</p>
+        <div class="collapsableDivs">
+            <div class="collapsable" onclick="toggleCollapsed(event)">
+                <div class="collapsableHeading">Rules</div>
+                <div class="collapsableDesc">1. The amount for investment cannot be more than $100,000<br><br>
+                    2. Name should not be associated to any public figure<br><br>
+                    3. Time period for long term goals and short term goals should not be same<br><br>
+                    4. Maximum requested Return on Investment(ROI) for short term can be 45%<br><br>
+                    5. Maximum requested Return on Investment(ROI) for long term can be 70%</div><br>
+            </div>
+        </div>
+        <div class="gameBox">
+            <form method="POST" target="">
+                <div class="inputContainer">
+                    <label for="fullName" id="fullNameLabel">Name:</label>
+                    <input type="text" name="fullName" id="fullName" onfocus="handleInputFocus('fullNameLabel')" onblur="handleInputBlur('fullNameLabel', event)">
+                </div>
+                <div class="inputContainer">
+                    <select name="age" id="ageSelect">
+                        <option disabled selected>Age:</option>
+                    </select>
+                </div>
+                <div class="inputContainer">
+                    <label for="shortTerm1" id="shortTerm1Label">Short Term Goal 1:</label>
+                    <input type="text" name="shortTerm1" id="shortTerm1" onfocus="handleInputFocus('shortTerm1Label')" onblur="handleInputBlur('shortTerm1Label', event)">
+                </div>
+                <div class="inputContainer">
+                    <label for="name">Short Term Goal 2 (Optional):</label>
+                    <input type="text" name="name">
+                </div>
+            </form>
+        </div>
     </div>
     <div class="ourTeam" id="ourTeam">
         <div class="column">
@@ -413,6 +515,23 @@
                     toCollapse.style.display = 'none'
                 }, 400)
             }
+        }
+        
+        function handleInputFocus(t) {
+            const myLabel = document.getElementById(t)
+            myLabel.style.transform = 'translate(-17px, -17px) scale(0.7, 0.7)'
+        }
+
+        function handleInputBlur(t, e) {
+            if (e.target.value.length > 0) return;
+            const myLabel = document.getElementById(t)
+            myLabel.style.transform = 'translate(0, 0) scale(1, 1)'
+        }
+        for (let i = 18; i < 101; i++) {
+            const newOption = document.createElement('option')
+            newOption.value = i.toString()
+            newOption.innerHTML = i.toString()
+            document.getElementById('ageSelect').appendChild(newOption)
         }
     </script>
 </body>
