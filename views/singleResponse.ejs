@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response</title>
+    <style>
+        * {box-sizing: border-box;}
+        body {
+            background-image: linear-gradient(blue, rgb(64, 64, 255), rgb(115, 115, 183));
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+
+        .box {
+            width: 400px;
+            height: 350px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p><b>Name: </b><%= foundResponse.fullName %></p>
+        <p><b>Age: </b><%= foundResponse.age %></p>
+        <p><b>Short Term Goal 1: </b><%= foundResponse.shortTerm1 %></p>
+        <p><b>Short Term Goal 2: </b><%= foundResponse.shortTerm2 %></p>
+        <p><b>Short Term Goal 3: </b><%= foundResponse.shortTerm3 %></p>
+        <p><b>Short Term Goal 4: </b><%= foundResponse.shortTerm4 %></p>
+        <p><b>Short Term Goal 5: </b><%= foundResponse.shortTerm5 %></p>
+        <p><b>Long Term Goal 1: </b><%= foundResponse.longTerm1 %></p>
+        <p><b>Long Term Goal 2: </b><%= foundResponse.longTerm2 %></p>
+        <p><b>Long Term Goal 3: </b><%= foundResponse.longTerm3 %></p>
+        <p><b>Long Term Goal 4: </b><%= foundResponse.longTerm4 %></p>
+        <p><b>Long Term Goal 5: </b><%= foundResponse.longTerm5 %></p>
+        <p><b>Total Amount: </b><%= foundResponse.totalAmount %></p>
+        <p><b>Short Term Amount: </b><%= foundResponse.shortTermAmount %></p>
+        <p><b>Short Term Period: </b><%= foundResponse.shortTermPeriod%></p>
+        <p><b>Long Term Amount: </b><%= foundResponse.longTermAmount %></p>
+        <p><b>Long Term Period: </b><%= foundResponse.longTermPeriod %></p>
+        <p><b>Others: </b><%= foundResponse.others %></p>
+    </div>
+</body>
+</html>

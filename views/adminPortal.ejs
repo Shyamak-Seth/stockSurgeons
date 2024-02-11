@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <style>
+        * {box-sizing: border-box;}
+        body {
+            background-image: linear-gradient(blue, rgb(64, 64, 255), rgb(115, 115, 183));
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            width: 10px;
+            background-color: #333;
+            border-radius: 50px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #222;
+        }
+        .box {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 500px;
+            text-align: center;
+            overflow: auto;
+            height: 300px;
+        }
+        h1 {
+            color: white;
+            margin: 20px 0;
+            font-size: 1.4em;
+            text-align: center;
+        }
+        .box a {
+            color: dodgerblue;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Responses</h1>
+        <% for (let i = 0; i < responsesAll.length; i++) { %>
+            <a href="/admin/<%= responsesAll[i].id %>"><%= responsesAll[i].fullName %></a><br>
+        <% } %>
+    </div>
+    <script>
+        window.history.replaceState('', '', '/admin')
+    </script>
+</body>
+</html>
